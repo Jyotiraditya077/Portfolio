@@ -174,7 +174,7 @@ function App() {
             loop 
             muted 
             playsInline
-            src="/photos/hero2.mp4"
+            src="/photos/hero2.2.mp4"
           />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative pt-16">
