@@ -42,14 +42,6 @@ function App() {
     { id: 'contact', label: 'Contact' }
   ];
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
-  };
-
   const techStack = {
     frontend: [
       { icon: Layout, name: 'HTML5' },
@@ -106,6 +98,14 @@ function App() {
     technologies: ['HTML', 'CSS']
   }
   ];
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900">
@@ -165,7 +165,7 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden animate-on-scroll">
         <div className="absolute inset-0">
           <video 
             className="w-full h-full object-cover opacity-10"
@@ -201,7 +201,7 @@ function App() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20">
+      <section id="about" className="py-20 animate-on-scroll">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white mb-8 text-center">About Me</h2>
           <div className="space-y-6 text-gray-300 leading-relaxed">
@@ -226,7 +226,7 @@ function App() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-slate-900/50">
+      <section id="features" className="py-20 bg-slate-900/50 animate-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -248,7 +248,7 @@ function App() {
       </section>
 
       {/* Tech Stack Section */}
-      <section id="tech-stack" className="py-20">
+      <section id="tech-stack" className="py-20 animate-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">Tech Stack</h2>
           <div className="space-y-12">
@@ -275,7 +275,7 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-slate-900/50">
+      <section id="projects" className="py-20 bg-slate-900/50 animate-on-scroll">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white mb-12 text-center">Featured Projects</h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -314,27 +314,27 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center">
-      <h2 className="text-3xl font-bold text-white mb-4">Let's Work Together</h2>
-      <p className="text-gray-300 mb-8">I'm always interested in hearing about new projects and opportunities.</p>
-      <a 
-        href="mailto:jyotiradityaswain123@gmail.com"
-        className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity animate-button"
-      >
-        Get in Touch
-        <Mail size={20} />
-      </a>
-    </div>
-  </div>
-</section>
+      <section id="contact" className="py-20 animate-on-scroll">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">Let's Work Together</h2>
+            <p className="text-gray-300 mb-8">I'm always interested in hearing about new projects and opportunities.</p>
+            <a 
+              href="mailto:jyotiradityaswain123@gmail.com"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity animate-button"
+            >
+              Get in Touch
+              <Mail size={20} />
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <p className="text-center text-gray-400">
-            © {new Date().getFullYear()} Jyotiraditya Swain. All rights reserved.
+            {new Date().getFullYear()} Jyotiraditya Swain. All rights reserved.
           </p>
         </div>
       </footer>
