@@ -189,7 +189,7 @@ function App() {
               <a href="https://github.com/Jyotiraditya077" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                 <Github size={24} />
               </a>
-              <a href="https://www.linkedin.com/in/jyotiraditya-swain-/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/in/jyotiraditya--swain/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                 <Linkedin size={24} />
               </a>
               <a href="mailto:jyotiradityaswain123@gmail.com" className="text-gray-300 hover:text-white transition-colors">
