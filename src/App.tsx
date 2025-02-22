@@ -192,7 +192,10 @@ function App() {
               <a href="https://www.linkedin.com/in/jyotiraditya--swain/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                 <Linkedin size={24} />
               </a>
-              <a href="mailto:jyotiradityaswain123@gmail.com" className="text-gray-300 hover:text-white transition-colors">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=jyotiradityaswain123@gmail.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-300 hover:text-white transition-colors">
                 <Mail size={24} />
               </a>
             </div>
@@ -320,7 +323,9 @@ function App() {
             <h2 className="text-3xl font-bold text-white mb-4">Let's Work Together</h2>
             <p className="text-gray-300 mb-8">I'm always interested in hearing about new projects and opportunities.</p>
             <a 
-              href="mailto:jyotiradityaswain123@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=jyotiradityaswain123@gmail.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity animate-button"
             >
               Get in Touch
