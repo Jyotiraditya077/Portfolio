@@ -57,6 +57,14 @@ const TechStack: React.FC = () => {
           ))}
         </div>
       </div>
+      {/* <br />
+      <br />
+      <br />
+      <ScrollVelocity
+        texts={['Full Stack', 'Developer']} 
+        velocity={30} // Define velocity value
+        className="custom-scroll-text"
+      /> */}
     </section>
   );
 };

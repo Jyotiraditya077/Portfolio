@@ -1,6 +1,7 @@
 import React from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import Particles from './Particles';
+import ShinyText from './ShinyText';
 
 const Home: React.FC = () => {
   return (
@@ -12,7 +13,7 @@ const Home: React.FC = () => {
           particleSpread={10}
           speed={0.1}
           particleBaseSize={100}
-          moveParticlesOnHover={true}
+          moveParticlesOnHover={false}
           alphaParticles={false}
           disableRotation={false}
         />
@@ -22,9 +23,12 @@ const Home: React.FC = () => {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-gradient-text relative z-10">
             Jyotiraditya Swain
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-            Full Stack Developer specializing in building exceptional digital experiences
-          </p>
+          <ShinyText 
+            text="Full Stack Developer specializing in building exceptional digital experiences" 
+            disabled={false} 
+            speed={3} 
+            className='custom-class'
+          />
           <div className="flex justify-center gap-4 mt-8">
             <a href="https://github.com/Jyotiraditya077" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
               <Github size={24} />
