@@ -114,7 +114,7 @@ const ContactForm: React.FC = () => {
                 placeholder="First name"
                 value={formData.firstName}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                 required
                 disabled={isLoading}
               />
@@ -126,7 +126,7 @@ const ContactForm: React.FC = () => {
                 placeholder="Last name"
                 value={formData.lastName}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
                 required
                 disabled={isLoading}
               />
@@ -141,31 +141,31 @@ const ContactForm: React.FC = () => {
               placeholder="Your email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+              className="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
               required
               disabled={isLoading}
             />
           </div>
 
           <div className="flex gap-2">
-          <select className="px-3 py-3 rounded-lg border border-gray-300 bg-white text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
-                <option value="+91">+91</option>
-                <option value="+1">+1</option>
-                <option value="+44">+44</option>
-                <option value="+62">+62</option>
-                <option value="+61">+61</option>
-                <option value="+86">+86</option>
-                <option value="+81">+81</option>
-                <option value="+82">+82</option>
-                <option value="+65">+65</option>
-                <option value="+60">+60</option>
-                <option value="+64">+64</option>
-                <option value="+55">+55</option>
-                <option value="+52">+52</option>
-                <option value="+33">+33</option>
-                <option value="+49">+49</option>
-                <option value="+39">+39</option>
-                <option value="+34">+34</option>
+            <select className="px-3 py-3 rounded-lg border border-gray-300 bg-white text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
+              <option value="+91">+91</option>
+              <option value="+1">+1</option>
+              <option value="+44">+44</option>
+              <option value="+62">+62</option>
+              <option value="+61">+61</option>
+              <option value="+86">+86</option>
+              <option value="+81">+81</option>
+              <option value="+82">+82</option>
+              <option value="+65">+65</option>
+              <option value="+60">+60</option>
+              <option value="+64">+64</option>
+              <option value="+55">+55</option>
+              <option value="+52">+52</option>
+              <option value="+33">+33</option>
+              <option value="+49">+49</option>
+              <option value="+39">+39</option>
+              <option value="+34">+34</option>
             </select>
             <input
               type="tel"
@@ -173,7 +173,12 @@ const ContactForm: React.FC = () => {
               placeholder="  Phone number"
               value={formData.phone}
               onChange={handleChange}
-              className="flex-1 px-1 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+              onKeyPress={(e) => {
+                if (!/[0-9]/.test(e.key)) {
+                  e.preventDefault();
+                }
+              }}
+              className="flex-1 px-1 py-3 rounded-lg border border-gray-300 text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
               required
               disabled={isLoading}
             />
@@ -190,31 +195,20 @@ const ContactForm: React.FC = () => {
             disabled={isLoading}
           />
 
-            <button
+          <button
             type="submit"
             disabled={isLoading}
             className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative"
-            >
+          >
             {isLoading ? (
-                <>
+              <>
                 <Loader2 size={20} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-spin" />
                 <span className="opacity-0">Submit</span>
-                </>
+              </>
             ) : (
-                "Submit"
+              "Submit"
             )}
-            </button>
-
-          {/* <p className="text-center text-sm text-gray-500">
-            By contacting us, you agree to our{" "}
-            <a href="#" className="text-gray-900 font-medium">
-              Terms of service
-            </a>{" "}
-            and{" "}
-            <a href="#" className="text-gray-900 font-medium">
-              Privacy Policy
-            </a>
-          </p> */}
+          </button>
         </form>
       </div>
     </div>
