@@ -64,12 +64,10 @@ function MainContent() {
       <ScrollReveal baseRotation={0} enableBlur={true} blurStrength={2}>
         <Features />
       </ScrollReveal>
-      <ScrollReveal baseRotation={0} enableBlur={true} blurStrength={1} wordAnimationEnd="center center">
+      <ScrollReveal baseRotation={0} enableBlur={false} blurStrength={0} wordAnimationEnd="center center">
         <TechStack />
       </ScrollReveal>
-      <ScrollReveal baseRotation={0} enableBlur={false} blurStrength={0}>
         <Projects />
-      </ScrollReveal>
       <ScrollReveal baseRotation={0} enableBlur={true} blurStrength={2}>
         <Contact />
       </ScrollReveal>

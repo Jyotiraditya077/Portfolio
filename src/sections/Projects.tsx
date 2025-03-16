@@ -1,8 +1,25 @@
-import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Link } from 'lucide-react';
 
 const Projects: React.FC = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const projects = [
+    {
+      title: 'FineBites',
+      description: 'FineBites is a modern food delivery web application that provides a seamless experience for users to browse menus, order food, and track their meals effortlessly. With a responsive UI, secure authentication, and Stripe-powered payments, FineBites ensures a smooth and efficient food ordering experience. The platform also includes an admin dashboard for managing orders, users, and menu items, making it a comprehensive solution for food businesses.',
+      link: 'https://github.com/Jyotiraditya077/finebites',
+      liveLink: 'https://finebites-frontend.onrender.com/',
+      image: 'photos/finebites.png',
+      technologies: ['React.js', 'Tailwind', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Stripe']
+    },
+    {
+      title: 'MindEase',
+      description: 'MindEase is an AI-powered mental health support platform designed to provide a safe, judgment-free space for users to navigate their emotional well-being. It offers personalized mental health check-ins, a 24/7 chatbot for support and guidance, and science-backed insights to help users manage stress, anxiety, and daily challenges. MindEase empowers individuals to take the first step in their mental health journey at their own pace, with no pressure.',
+      link: 'https://github.com/Jyotiraditya077/mindease-frontend',
+      image: 'photos/mindease.png',
+      technologies: ['React.js', 'Tailwind', 'FastAPI', 'Pytorch', 'MongoDB', 'Clerk', 'XGBoost', 'HuggingFace']
+    },
     {
       title: 'Sneak',
       description: 'A modern e-commerce website for sneaker enthusiasts. I developed a responsive website with a dynamic product catalogue, intuitive user experience, and optimized loading speed, resulting in a 27% increase in compatibility, 40% reduction in bounce rates, and 25% increase in engagement time.',
@@ -34,14 +51,25 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-slate-900/50 animate-on-scroll">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-white mb-12 text-center">Featured Projects</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project) => (
+    <section id="projects" className="py-20 bg-slate-900/50 animate-on-scroll relative">
+      {/* Overlay effect for spotlight */}
+      {hoveredIndex !== null && (
+        <div className="fixed inset-0 bg-black opacity-5 transition-opacity duration-300 pointer-events-none"></div>
+      )}
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <h2 className="text-3xl font-bold text-white mb-12 text-center">
+          Featured Projects
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-8 relative z-10">
+          {projects.map((project, index) => (
             <div 
               key={project.title}
-              className="group relative bg-white/5 backdrop-blur-lg rounded-lg overflow-hidden border border-white/10 hover:border-purple-400/50 transition-colors duration-300"
+              className={`relative bg-white/5 backdrop-blur-lg rounded-lg overflow-hidden border border-white/10 transition-all duration-300 
+                ${hoveredIndex !== null && hoveredIndex !== index ? 'brightness-50' : 'brightness-100'}`}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               <div className="aspect-video bg-purple-900/50">
                 <img 
@@ -53,12 +81,20 @@ const Projects: React.FC = () => {
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-white mb-2 flex items-center justify-between">
                   {project.title}
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">
-                    <ExternalLink size={20} />
-                  </a>
+                  <div className="flex gap-2">
+                    {index === 0 && (
+                      <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">
+                        <Link size={20} />
+                      </a>
+                    )}
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">
+                      <ExternalLink size={20} />
+                    </a>
+                  </div>
                 </h3>
                 <p className="text-gray-400">{project.description}</p>
-                <div className="flex gap-2 mt-4">
+                {/* Updated Technologies Section to Fix Scrollbar Issue */}
+                <div className="flex flex-wrap gap-2 mt-4">
                   {project.technologies.map((tech) => (
                     <span key={tech} className="px-3 py-1 bg-purple-900/50 rounded-full text-sm text-purple-300">
                       {tech}
