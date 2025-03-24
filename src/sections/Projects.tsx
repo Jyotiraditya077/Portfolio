@@ -11,7 +11,7 @@ const Projects: React.FC = () => {
       link: 'https://github.com/Jyotiraditya077/finebites',
       liveLink: 'https://finebites-frontend.onrender.com/',
       image: 'photos/finebites.png',
-      technologies: ['React.js', 'Tailwind', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Stripe']
+      technologies: ['React.js', 'Tailwind', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Stripe', 'Cloudinary']
     },
     {
       title: 'MindEase',

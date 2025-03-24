@@ -61,7 +61,7 @@ function MainContent() {
       <ScrollReveal baseRotation={0} enableBlur={true} blurStrength={2}>
         <About />
       </ScrollReveal>
-      <ScrollReveal baseRotation={0} enableBlur={true} blurStrength={2}>
+      <ScrollReveal baseRotation={0} enableBlur={false} blurStrength={0}>
         <Features />
       </ScrollReveal>
       <ScrollReveal baseRotation={0} enableBlur={false} blurStrength={0} wordAnimationEnd="center center">
