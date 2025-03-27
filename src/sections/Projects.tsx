@@ -66,7 +66,7 @@ const Projects: React.FC = () => {
           {projects.map((project, index) => (
             <div 
               key={project.title}
-              className={`relative bg-white/5 backdrop-blur-lg rounded-lg overflow-hidden border border-white/10 transition-all duration-300 
+              className={`relative bg-white/5 backdrop-blur-lg rounded-lg overflow-hidden transition-all duration-300 
                 ${hoveredIndex !== null && hoveredIndex !== index ? 'brightness-50' : 'brightness-100'}`}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}

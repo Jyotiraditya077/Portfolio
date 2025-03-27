@@ -44,7 +44,7 @@ const TechStack: React.FC = () => {
                 {technologies.map((tech) => (
                   <div
                     key={tech.name}
-                    className="group bg-white/5 backdrop-blur-lg rounded-lg p-4 border border-white/10 flex flex-col items-center justify-center gap-2 hover:bg-white/10 transition-colors duration-300"
+                    className="group bg-white/5 backdrop-blur-lg rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/10 transition-colors duration-300"
                   >
                     <tech.icon className="text-purple-400 group-hover:text-purple-300 transition-colors" size={24} />
                     <span className="text-gray-300 group-hover:text-white text-sm font-medium text-center transition-colors">

@@ -28,7 +28,7 @@ const Features: React.FC = () => {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="bg-black/40 backdrop-blur-lg rounded-lg p-6 border border-white/10 
+              className="bg-black/40 backdrop-blur-lg rounded-lg p-6 
                          hover:bg-black/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-400/40"
             >
               <feature.icon className="text-purple-400 mb-4" size={32} />

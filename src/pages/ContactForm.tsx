@@ -3,7 +3,9 @@
 import type React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Mail, ChevronLeft, Loader2, CheckCircle } from "lucide-react"
+import { Mail, ChevronLeft, CheckCircle } from "lucide-react"
+import Particles from "./Particles";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 interface FormData {
   firstName: string
@@ -32,7 +34,6 @@ const ContactForm: React.FC = () => {
     setError("")
 
     try {
-      // Prepare the data object
       const data = {
         access_key: "4e16a67e-0e00-4e90-b417-d42f4578de5b",
         name: `${formData.firstName} ${formData.lastName}`,
@@ -54,7 +55,6 @@ const ContactForm: React.FC = () => {
 
       if (result.success) {
         setIsSuccess(true)
-        // Reset form
         setFormData({
           firstName: "",
           lastName: "",
@@ -62,10 +62,7 @@ const ContactForm: React.FC = () => {
           phone: "",
           message: "",
         })
-        // Reset success message after 5 seconds
-        setTimeout(() => {
-          setIsSuccess(false)
-        }, 5000)
+        setTimeout(() => setIsSuccess(false), 5000)
       } else {
         setError("Something went wrong. Please try again.")
       }
@@ -85,8 +82,31 @@ const ContactForm: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white rounded-2xl p-8 relative">
+    <div className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+          overflow: "hidden",
+        }}
+      >
+        <Particles
+          particleColors={["#ffffff", "#ffffff"]}
+          particleCount={600}
+          particleSpread={10}
+          speed={0.06}
+          particleBaseSize={100}
+          moveParticlesOnHover={false}
+          alphaParticles={true}
+          disableRotation={false}
+        />
+      </div>
+
+      <div className="max-w-md w-full bg-white rounded-2xl p-8 relative z-10 shadow-lg">
         <button onClick={() => navigate("/")} className="absolute top-4 left-4 text-gray-600 hover:text-gray-900">
           <ChevronLeft size={24} />
         </button>
@@ -97,57 +117,43 @@ const ContactForm: React.FC = () => {
         </div>
 
         {error && <div className="mb-4 p-3 bg-red-50 text-red-500 rounded-lg text-sm">{error}</div>}
-
         {isSuccess && (
           <div className="mb-4 p-3 bg-green-50 text-green-600 rounded-lg text-sm flex items-center gap-2">
-            <CheckCircle size={20} />
-            Message sent successfully!
+            <CheckCircle size={20} /> Message sent successfully!
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First name"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
-                required
-                disabled={isLoading}
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last name"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
-                required
-                disabled={isLoading}
-              />
-            </div>
-          </div>
-
           <div className="relative">
-            <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+            <img
+              src="./photos/sneaking-cat.webp"
+              alt="Sneaky Cat"
+              className="absolute top-[-37px] left-3 w-16 h-10"
+            />
             <input
-              type="email"
-              name="email"
-              placeholder="Your email"
-              value={formData.email}
+              type="text"
+              name="firstName"
+              placeholder="First name"
+              value={formData.firstName}
               onChange={handleChange}
-              className="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
               required
               disabled={isLoading}
             />
           </div>
 
-          <div className="flex gap-2">
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last name"
+            value={formData.lastName}
+            onChange={handleChange}
+            className="w-full px-4 py-3 rounded-lg border text-gray-600 focus:ring-2 focus:ring-purple-500 outline-none"
+            required
+            disabled={isLoading}
+          />
+
+          <div className="flex flex-col md:flex-row gap-2">
             <select className="px-3 py-3 rounded-lg border border-gray-300 bg-white text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
               <option value="+91">+91</option>
               <option value="+1">+1</option>
@@ -170,43 +176,36 @@ const ContactForm: React.FC = () => {
             <input
               type="tel"
               name="phone"
-              placeholder="  Phone number"
+              placeholder="Phone number"
               value={formData.phone}
               onChange={handleChange}
-              onKeyPress={(e) => {
-                if (!/[0-9]/.test(e.key)) {
-                  e.preventDefault();
-                }
-              }}
-              className="flex-1 px-1 py-3 rounded-lg border border-gray-300 text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+              className="flex-1 px-4 py-3 rounded-lg border border-gray-300 text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
               required
               disabled={isLoading}
             />
           </div>
-
           <textarea
             name="message"
             placeholder="How can we help?"
             value={formData.message}
             onChange={handleChange}
             rows={4}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none resize-none"
+            className="w-full px-4 py-3 rounded-lg border text-gray-600 focus:ring-2 focus:ring-purple-500 outline-none resize-none"
             required
             disabled={isLoading}
           />
-
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 relative"
+            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center relative h-12"
           >
-            {isLoading ? (
-              <>
-                <Loader2 size={20} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-spin" />
-                <span className="opacity-0">Submit</span>
-              </>
-            ) : (
-              "Submit"
+            {!isLoading && <span>Submit</span>}
+            
+            {isLoading && (
+              <div className="flex items-center gap-2">
+                <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </div>
             )}
           </button>
         </form>
@@ -216,4 +215,3 @@ const ContactForm: React.FC = () => {
 }
 
 export default ContactForm
-
