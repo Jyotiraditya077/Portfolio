@@ -64,9 +64,9 @@ function MainContent() {
       <ScrollReveal baseRotation={0} enableBlur={false} blurStrength={0}>
         <Features />
       </ScrollReveal>
-      <ScrollReveal baseRotation={0} enableBlur={false} blurStrength={0} wordAnimationEnd="center center">
+      {/* <ScrollReveal baseRotation={0} enableBlur={false} blurStrength={0} wordAnimationEnd="center center"> */}
         <TechStack />
-      </ScrollReveal>
+      {/* </ScrollReveal> */}
         <Projects />
       <ScrollReveal baseRotation={0} enableBlur={true} blurStrength={2}>
         <Contact />

@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { ExternalLink, Link } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Projects: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [loadedImages, setLoadedImages] = useState<{ [key: string]: boolean }>({});
+
+  const handleImageLoad = (title: string) => {
+    setLoadedImages(prev => ({ ...prev, [title]: true }));
+  };
 
   const projects = [
     {
@@ -58,14 +64,16 @@ const Projects: React.FC = () => {
       )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <h2 className="text-3xl font-bold text-white mb-12 text-center">
-          Featured Projects
-        </h2>
+        <h2 className="text-3xl font-bold text-white mb-12 text-center">Featured Projects</h2>
 
         <div className="grid md:grid-cols-2 gap-8 relative z-10">
           {projects.map((project, index) => (
-            <div 
+            <motion.div 
               key={project.title}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ margin: "-50px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className={`relative bg-white/5 backdrop-blur-lg rounded-lg overflow-hidden transition-all duration-300 
                 ${hoveredIndex !== null && hoveredIndex !== index ? 'brightness-50' : 'brightness-100'}`}
               onMouseEnter={() => setHoveredIndex(index)}
@@ -75,7 +83,11 @@ const Projects: React.FC = () => {
                 <img 
                   src={project.image}
                   alt={`${project.title} preview`}
-                  className="object-cover w-full h-full opacity-75 group-hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                  className={`object-cover w-full h-full transition-opacity duration-700 ${
+                    loadedImages[project.title] ? 'opacity-90' : 'opacity-0'
+                  } group-hover:opacity-100`}
+                  onLoad={() => handleImageLoad(project.title)}
                 />
               </div>
               <div className="p-6">
@@ -93,7 +105,6 @@ const Projects: React.FC = () => {
                   </div>
                 </h3>
                 <p className="text-gray-400">{project.description}</p>
-                {/* Updated Technologies Section to Fix Scrollbar Issue */}
                 <div className="flex flex-wrap gap-2 mt-4">
                   {project.technologies.map((tech) => (
                     <span key={tech} className="px-3 py-1 bg-purple-900/50 rounded-full text-sm text-purple-300">
@@ -102,7 +113,7 @@ const Projects: React.FC = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

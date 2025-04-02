@@ -21,7 +21,8 @@
   }
 
   .animate-gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-600 to-purple-400 bg-300% animate-gradient;
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-600 to-purple-400 bg-300%;
+    animation: gradient 8s ease infinite, nameReveal 1.5s ease-out forwards;
   }
 
   @keyframes gradient {
@@ -36,12 +37,20 @@
     }
   }
 
-  .animate-gradient {
-    animation: gradient 8s ease infinite;
-  }
-
   .bg-300\% {
     background-size: 300% 300%;
+  }
+
+  /* Name animation */
+  @keyframes nameReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /* Custom scrollbar */
