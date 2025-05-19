@@ -27,6 +27,14 @@ const Projects: React.FC = () => {
       technologies: ['React.js', 'Tailwind', 'FastAPI', 'Pytorch', 'MongoDB', 'Clerk', 'XGBoost', 'HuggingFace']
     },
     {
+      title: 'BG Remover',
+      description: 'BG Remover is a Full Stack AI SaaS application that enables users to remove backgrounds from images with just one click. Built with the MERN stack and integrated with AI-powered image processing, this app offers seamless user experience, authentication, credit system, and online payment integration.',
+      link: 'https://github.com/Jyotiraditya077/bg-remover',
+      liveLink: 'https://bg-removeryou.vercel.app/', 
+      image: 'photos/bg-remover.png',
+      technologies: ['React.js', 'Tailwind', 'Clerk', 'Node.js', 'Express.js', 'MongoDB', 'Razorpay', 'Stripe']
+    },
+    {
       title: 'Sneak',
       description: 'A modern e-commerce website for sneaker enthusiasts. I developed a responsive website with a dynamic product catalogue, intuitive user experience, and optimized loading speed, resulting in a 27% increase in compatibility, 40% reduction in bounce rates, and 25% increase in engagement time.',
       link: 'https://github.com/Jyotiraditya077/sneak',
@@ -46,13 +54,6 @@ const Projects: React.FC = () => {
       link: 'https://github.com/Jyotiraditya077/To-do-list-web-app',
       image: 'photos/to-do.png',
       technologies: ['HTML', 'CSS', 'JavaScript']
-    },
-    {
-      title: 'Tribute Page',
-      description: 'A tribute page dedicated to the life and achievements of Steve Jobs, co-founder of Apple Inc. This project showcases my ability to design and develop a visually appealing and informative website.',
-      link: 'https://github.com/Jyotiraditya077/Tribute-Page',
-      image: 'photos/tribute.png',
-      technologies: ['HTML', 'CSS']
     }
   ];
 
@@ -94,7 +95,7 @@ const Projects: React.FC = () => {
                 <h3 className="text-xl font-semibold text-white mb-2 flex items-center justify-between">
                   {project.title}
                   <div className="flex gap-2">
-                    {index === 0 && (
+                    {(index === 0 || index === 2) && project.liveLink && (
                       <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">
                         <Link size={20} />
                       </a>
