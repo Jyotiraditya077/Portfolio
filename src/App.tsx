@@ -58,7 +58,7 @@ function MainContent() {
       <ScrollReveal baseRotation={0} enableBlur={true} blurStrength={0}>
         <Home />
       </ScrollReveal>
-      <ScrollReveal baseRotation={0} enableBlur={true} blurStrength={2}>
+      <ScrollReveal baseRotation={0} enableBlur={true} blurStrength={0}>
         <About />
       </ScrollReveal>
       <ScrollReveal baseRotation={0} enableBlur={false} blurStrength={0}>

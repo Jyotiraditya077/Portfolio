@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import GlareHover from './GlareHover'
 
 const About: React.FC = () => {
   return (
@@ -7,19 +8,37 @@ const About: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-white mb-8 text-center">About Me</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <motion.div 
+        <motion.div 
             className="relative"
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ margin: "-50px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <img
-              src="photos/profile.jpg"
-              alt="Profile Picture"
-              className="rounded-lg shadow-lg w-full max-w-md mx-auto"
-            />
-          </motion.div>
+            <GlareHover
+              glareColor="#ffffff"
+              glareOpacity={0.25}
+              glareAngle={-30}
+              glareSize={300}
+              transitionDuration={800}
+              playOnce={false}
+              className="rounded-lg shadow-lg w-full max-w-md mx-auto overflow-hidden"
+              style={{
+                background: "transparent",
+                border: "none",
+                width: "100%",
+                height: "auto",
+              }}
+            >
+              <img
+                src="photos/profile.jpg"
+                alt="Profile"
+                className="w-full h-auto object-cover block"
+              />
+            </GlareHover>
+
+        </motion.div>
+
           <motion.div 
             className="space-y-6 text-gray-300 leading-relaxed"
             initial={{ x: 50, opacity: 0 }}

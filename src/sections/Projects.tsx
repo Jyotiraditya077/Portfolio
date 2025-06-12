@@ -49,11 +49,12 @@ const Projects: React.FC = () => {
       technologies: ['HTML', 'CSS', 'JavaScript']
     },
     {
-      title: 'To-Do List App',
-      description: 'A simple yet effective to-do list web app that allows users to create, edit, and delete tasks. Built using HTML, JavaScript, and CSS, this app demonstrates my ability to create interactive and user-friendly interfaces.',
+      title: 'Works-todo',
+      description: 'A simple yet effective to-do list web app that allows users to create, edit, and delete tasks. Built using react.js this app demonstrates my ability to create interactive and user-friendly interfaces.',
       link: 'https://github.com/Jyotiraditya077/To-do-list-web-app',
-      image: 'photos/to-do.png',
-      technologies: ['HTML', 'CSS', 'JavaScript']
+      liveLink: 'https://works-todo.netlify.app/',
+      image: 'photos/works-todo.png',
+      technologies: ['React.js']
     }
   ];
 
@@ -95,7 +96,7 @@ const Projects: React.FC = () => {
                 <h3 className="text-xl font-semibold text-white mb-2 flex items-center justify-between">
                   {project.title}
                   <div className="flex gap-2">
-                    {(index === 0 || index === 2) && project.liveLink && (
+                    {(index === 0 || index === 2 || index === 5) && project.liveLink && (
                       <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">
                         <Link size={20} />
                       </a>
