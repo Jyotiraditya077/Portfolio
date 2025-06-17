@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { ExternalLink, Link } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ExternalLink, Link, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Projects: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [loadedImages, setLoadedImages] = useState<{ [key: string]: boolean }>({});
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   const handleImageLoad = (title: string) => {
     setLoadedImages(prev => ({ ...prev, [title]: true }));
+  };
+
+  const toggleShowMore = () => {
+    setShowAllProjects(!showAllProjects);
   };
 
   const projects = [
@@ -17,6 +22,14 @@ const Projects: React.FC = () => {
       link: 'https://github.com/Jyotiraditya077/finebites',
       liveLink: 'https://finebites-frontend.onrender.com/',
       image: 'photos/finebites.png',
+      technologies: ['React.js', 'Tailwind', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Stripe', 'Cloudinary']
+    },
+    {
+      title: 'FineRides',
+      description: 'FineRides is a modern vehicle rental web application that provides a seamless experience for users to browse vehicles, book rentals, and manage trips effortlessly. With a responsive UI, secure authentication, and Stripe-powered payments, FineRides ensures a smooth and reliable rental process. The platform also includes an admin dashboard for managing orders, users, and vehicle listings, making it a comprehensive solution for rental businesses.',
+      link: 'https://github.com/Jyotiraditya077/finerides',
+      liveLink: 'https://finerides.onrender.com/',
+      image: 'photos/finerides.png',
       technologies: ['React.js', 'Tailwind', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Stripe', 'Cloudinary']
     },
     {
@@ -58,6 +71,8 @@ const Projects: React.FC = () => {
     }
   ];
 
+  const hasMoreProjects = projects.length > 4;
+
   return (
     <section id="projects" className="py-20 bg-slate-900/50 animate-on-scroll relative">
       {/* Overlay effect for spotlight */}
@@ -69,7 +84,7 @@ const Projects: React.FC = () => {
         <h2 className="text-3xl font-bold text-white mb-12 text-center">Featured Projects</h2>
 
         <div className="grid md:grid-cols-2 gap-8 relative z-10">
-          {projects.map((project, index) => (
+          {projects.slice(0, 4).map((project, index) => (
             <motion.div 
               key={project.title}
               initial={{ opacity: 0 }}
@@ -96,7 +111,7 @@ const Projects: React.FC = () => {
                 <h3 className="text-xl font-semibold text-white mb-2 flex items-center justify-between">
                   {project.title}
                   <div className="flex gap-2">
-                    {(index === 0 || index === 2 || index === 5) && project.liveLink && (
+                    {(index === 0 || index === 1 || index === 3) && project.liveLink && (
                       <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">
                         <Link size={20} />
                       </a>
@@ -118,6 +133,141 @@ const Projects: React.FC = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Additional projects with smooth dropdown animation */}
+        <AnimatePresence mode="wait">
+          {showAllProjects && (
+            <motion.div
+              key="additional-projects"
+              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+              animate={{ 
+                opacity: 1, 
+                height: "auto", 
+                marginTop: 32,
+                transition: {
+                  height: { duration: 0.6, ease: "easeInOut" },
+                  opacity: { duration: 0.4, delay: 0.2 },
+                  marginTop: { duration: 0.6, ease: "easeInOut" }
+                }
+              }}
+              exit={{ 
+                opacity: 0, 
+                height: 0, 
+                marginTop: 0,
+                transition: {
+                  opacity: { duration: 0.3 },
+                  height: { duration: 0.5, delay: 0.1, ease: "easeInOut" },
+                  marginTop: { duration: 0.5, delay: 0.1, ease: "easeInOut" }
+                }
+              }}
+              className="overflow-hidden"
+            >
+              <div className="grid md:grid-cols-2 gap-8 relative z-10">
+                {projects.slice(4).map((project, index) => (
+                  <motion.div 
+                    key={project.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ 
+                      opacity: 1, 
+                      y: 0,
+                      transition: { 
+                        duration: 0.5, 
+                        delay: 0.3 + (index * 0.1), 
+                        ease: "easeOut" 
+                      }
+                    }}
+                    exit={{ 
+                      opacity: 0, 
+                      y: -20,
+                      transition: { 
+                        duration: 0.3, 
+                        delay: index * 0.05, 
+                        ease: "easeIn" 
+                      }
+                    }}
+                    className={`relative bg-white/5 backdrop-blur-lg rounded-lg overflow-hidden transition-all duration-300 
+                      ${hoveredIndex !== null && hoveredIndex !== index + 4 ? 'brightness-50' : 'brightness-100'}`}
+                    onMouseEnter={() => setHoveredIndex(index + 4)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
+                    <div className="aspect-video bg-purple-900/50">
+                      <img 
+                        src={project.image}
+                        alt={`${project.title} preview`}
+                        loading="lazy"
+                        className={`object-cover w-full h-full transition-opacity duration-700 ${
+                          loadedImages[project.title] ? 'opacity-90' : 'opacity-0'
+                        } group-hover:opacity-100`}
+                        onLoad={() => handleImageLoad(project.title)}
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold text-white mb-2 flex items-center justify-between">
+                        {project.title}
+                        <div className="flex gap-2">
+                          {project.title === 'Works-todo' && project.liveLink && (
+                            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">
+                              <Link size={20} />
+                            </a>
+                          )}
+                          <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">
+                            <ExternalLink size={20} />
+                          </a>
+                        </div>
+                      </h3>
+                      <p className="text-gray-400">{project.description}</p>
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {project.technologies.map((tech) => (
+                          <span key={tech} className="px-3 py-1 bg-purple-900/50 rounded-full text-sm text-purple-300">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* See More / Show Less Button */}
+        {hasMoreProjects && (
+          <motion.div 
+            className="flex justify-center mt-10"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            <motion.button
+              onClick={toggleShowMore}
+              className="group relative px-6 py-2.5 bg-white/5 backdrop-blur-sm hover:bg-white/10 text-white font-medium rounded-lg transition-all duration-300 border border-white/10 hover:border-purple-400/30"
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.2, ease: "easeOut" }
+              }}
+              whileTap={{ 
+                scale: 0.98,
+                transition: { duration: 0.1 }
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-purple-600/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="relative flex items-center gap-2 text-sm">
+                <span className="text-gray-300 group-hover:text-white transition-colors duration-300">
+                  {showAllProjects ? 'Show Less' : `See More Projects (${projects.length - 4})`}
+                </span>
+                <motion.div
+                  animate={{ rotate: showAllProjects ? 180 : 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="text-purple-400 group-hover:text-purple-300 transition-colors duration-300"
+                >
+                  <ChevronDown size={16} />
+                </motion.div>
+              </div>
+            </motion.button>
+          </motion.div>
+        )}
       </div>
     </section>
   );
