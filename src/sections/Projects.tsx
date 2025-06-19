@@ -63,7 +63,7 @@ const Projects: React.FC = () => {
     },
     {
       title: 'Works-todo',
-      description: 'A simple yet effective to-do list web app that allows users to create, edit, and delete tasks. Built using react.js this app demonstrates my ability to create interactive and user-friendly interfaces.',
+      description: 'A simple yet efficient to-do list web app that lets users add, edit, delete, and sort tasks by oldest or most recent. Built with React.js, this project showcases my ability to develop clean, interactive, and user-focused interfaces.',
       link: 'https://github.com/Jyotiraditya077/To-do-list-web-app',
       liveLink: 'https://works-todo.netlify.app/',
       image: 'photos/works-todo.png',
