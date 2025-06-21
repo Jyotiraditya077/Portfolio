@@ -71,7 +71,7 @@ const Home: React.FC = () => {
           {/* Super Sleek Transparent ShinyText Button */}
           <div className="mt-8">
             <a
-              href="https://drive.google.com/file/d/1dD62NaP-rMpdUpgvrPotfUEu4rTKYZwc/view?usp=sharing"
+              href="https://drive.google.com/file/d/1e8ya7FabS-Xalrq0-kzFD0df1D5cogsT/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="border border-white/20 px-5 py-2 rounded-full backdrop-blur-md hover:border-white/50 transition-all duration-300"
