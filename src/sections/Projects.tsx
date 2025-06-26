@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Link, ChevronDown, ChevronUp } from 'lucide-react';
+import { ExternalLink, Link, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Projects: React.FC = () => {
@@ -48,11 +48,12 @@ const Projects: React.FC = () => {
       technologies: ['React.js', 'Tailwind', 'Clerk', 'Node.js', 'Express.js', 'MongoDB', 'Razorpay', 'Stripe']
     },
     {
-      title: 'Sneak',
-      description: 'A modern e-commerce website for sneaker enthusiasts. I developed a responsive website with a dynamic product catalogue, intuitive user experience, and optimized loading speed, resulting in a 27% increase in compatibility, 40% reduction in bounce rates, and 25% increase in engagement time.',
-      link: 'https://github.com/Jyotiraditya077/sneak',
-      image: 'photos/sneak.png',
-      technologies: ['HTML', 'CSS', 'JavaScript']
+      title: 'NoteVader',
+      description: 'A Star Wars themed note-taking app with JWT auth, Yoda & Darth UI modes using DaisyUI. Built with MERN stack, it offers login, create, and view note features in a themed, responsive interface.',
+      link: 'https://github.com/Jyotiraditya077/NoteVader',
+      liveLink: 'https://notevader.onrender.com',
+      image: 'photos/notevader.png',
+      technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'DaisyUI']
     },
     {
       title: 'Weather App',
@@ -75,7 +76,6 @@ const Projects: React.FC = () => {
 
   return (
     <section id="projects" className="py-20 bg-slate-900/50 animate-on-scroll relative">
-      {/* Overlay effect for spotlight */}
       {hoveredIndex !== null && (
         <div className="fixed inset-0 bg-black opacity-5 transition-opacity duration-300 pointer-events-none"></div>
       )}
@@ -111,7 +111,7 @@ const Projects: React.FC = () => {
                 <h3 className="text-xl font-semibold text-white mb-2 flex items-center justify-between">
                   {project.title}
                   <div className="flex gap-2">
-                    {(index === 0 || index === 1 || index === 3) && project.liveLink && (
+                    {project.liveLink && (
                       <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">
                         <Link size={20} />
                       </a>
@@ -134,32 +134,14 @@ const Projects: React.FC = () => {
           ))}
         </div>
 
-        {/* Additional projects with smooth dropdown animation */}
         <AnimatePresence mode="wait">
           {showAllProjects && (
             <motion.div
               key="additional-projects"
               initial={{ opacity: 0, height: 0, marginTop: 0 }}
-              animate={{ 
-                opacity: 1, 
-                height: "auto", 
-                marginTop: 32,
-                transition: {
-                  height: { duration: 0.6, ease: "easeInOut" },
-                  opacity: { duration: 0.4, delay: 0.2 },
-                  marginTop: { duration: 0.6, ease: "easeInOut" }
-                }
-              }}
-              exit={{ 
-                opacity: 0, 
-                height: 0, 
-                marginTop: 0,
-                transition: {
-                  opacity: { duration: 0.3 },
-                  height: { duration: 0.5, delay: 0.1, ease: "easeInOut" },
-                  marginTop: { duration: 0.5, delay: 0.1, ease: "easeInOut" }
-                }
-              }}
+              animate={{ opacity: 1, height: "auto", marginTop: 32 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+              transition={{ duration: 0.5 }}
               className="overflow-hidden"
             >
               <div className="grid md:grid-cols-2 gap-8 relative z-10">
@@ -167,24 +149,9 @@ const Projects: React.FC = () => {
                   <motion.div 
                     key={project.title}
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ 
-                      opacity: 1, 
-                      y: 0,
-                      transition: { 
-                        duration: 0.5, 
-                        delay: 0.3 + (index * 0.1), 
-                        ease: "easeOut" 
-                      }
-                    }}
-                    exit={{ 
-                      opacity: 0, 
-                      y: -20,
-                      transition: { 
-                        duration: 0.3, 
-                        delay: index * 0.05, 
-                        ease: "easeIn" 
-                      }
-                    }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
                     className={`relative bg-white/5 backdrop-blur-lg rounded-lg overflow-hidden transition-all duration-300 
                       ${hoveredIndex !== null && hoveredIndex !== index + 4 ? 'brightness-50' : 'brightness-100'}`}
                     onMouseEnter={() => setHoveredIndex(index + 4)}
@@ -205,7 +172,7 @@ const Projects: React.FC = () => {
                       <h3 className="text-xl font-semibold text-white mb-2 flex items-center justify-between">
                         {project.title}
                         <div className="flex gap-2">
-                          {project.title === 'Works-todo' && project.liveLink && (
+                          {project.liveLink && (
                             <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300">
                               <Link size={20} />
                             </a>
@@ -231,7 +198,6 @@ const Projects: React.FC = () => {
           )}
         </AnimatePresence>
 
-        {/* See More / Show Less Button */}
         {hasMoreProjects && (
           <motion.div 
             className="flex justify-center mt-10"
@@ -243,14 +209,8 @@ const Projects: React.FC = () => {
             <motion.button
               onClick={toggleShowMore}
               className="group relative px-6 py-2.5 bg-white/5 backdrop-blur-sm hover:bg-white/10 text-white font-medium rounded-lg transition-all duration-300 border border-white/10 hover:border-purple-400/30"
-              whileHover={{ 
-                scale: 1.02,
-                transition: { duration: 0.2, ease: "easeOut" }
-              }}
-              whileTap={{ 
-                scale: 0.98,
-                transition: { duration: 0.1 }
-              }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-purple-600/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
               <div className="relative flex items-center gap-2 text-sm">
