@@ -33,6 +33,14 @@ const Projects: React.FC = () => {
       technologies: ['React.js', 'Tailwind', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Stripe', 'Cloudinary']
     },
     {
+      title: 'FineSplit',
+      description: 'FineSplit is a smart and intuitive expense splitting app built for friends, flatmates, and teams. It makes tracking who paid what feel effortless — no awkward money convos, just clean records. Powered by Next.js and Convex, it combines real-time updates, smooth animations, and secure authentication for a modern user experience.',
+      link: 'https://github.com/Jyotiraditya077/FineSplit',
+      liveLink: 'https://finesplit.vercel.app',
+      image: 'photos/finesplit.png',
+      technologies: ['React.js', 'Tailwind', 'nextjs', 'postgresql', 'Clerk', 'Convex', 'Inngest', 'Shadcn UI']
+    },
+    {
       title: 'MindEase',
       description: 'MindEase is an AI-powered mental health support platform designed to provide a safe, judgment-free space for users to navigate their emotional well-being. It offers personalized mental health check-ins, a 24/7 chatbot for support and guidance, and science-backed insights to help users manage stress, anxiety, and daily challenges. MindEase empowers individuals to take the first step in their mental health journey at their own pace, with no pressure.',
       link: 'https://github.com/Jyotiraditya077/mindease-frontend',
@@ -56,11 +64,12 @@ const Projects: React.FC = () => {
       technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'DaisyUI']
     },
     {
-      title: 'Weather App',
-      description: 'A sleek weather app providing real-time updates for any city, with a fully responsive design and dynamic weather icons, resulting in a 100% mobile compatibility, 30% increase in user engagement, and 100,000+ cities covered.',
-      link: 'https://github.com/Jyotiraditya077/weather_app',
-      image: 'photos/weather.png',
-      technologies: ['HTML', 'CSS', 'JavaScript']
+      title: 'Musica',
+      description: 'Musica is a sleek and modern music streaming web application that lets users play, explore, and manage their favorite tracks effortlessly. Built with the MERN stack, it features responsive design, secure authentication, seamless audio playback, and a vibrant UI inspired by leading music platforms.',
+      link: 'https://github.com/Jyotiraditya077/Musica',
+      liveLink: 'https://mymusica.onrender.com',
+      image: 'photos/musica.png',
+      technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Clerk', 'Shadcn UI', 'Tailwind']
     },
     {
       title: 'Works-todo',
